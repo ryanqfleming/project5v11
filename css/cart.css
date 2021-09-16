@@ -1,0 +1,69 @@
+
+.cartImg {
+    object-fit: cover;
+}
+.bearName {
+    font-size: 2em;
+}
+.d-flex {
+    flex-wrap: wrap;
+}
+.displayBears {
+    background-color: #f3e9f1;
+    border: 5px dotted rgba(164,43,153,0.1);
+    border-radius: 34px;
+    margin-bottom: 5px;   
+    padding: 10px; 
+}
+.cartImg {
+    border-radius: 34px;
+}
+.priceDiv{
+    align-self: center;
+    flex-grow: 4;
+}
+.bearColor {
+    align-self: flex-start;
+}
+.updateButton{
+    height: 30px;
+    align-self: center;
+}
+.informationForm {
+    display: none;
+    
+}
+
+.formContain{
+    background-color: #f3e9f1;
+    border: 5px dotted rgba(164,43,153,0.1);
+    border-radius: 34px;
+    margin-bottom: 5px;   
+    padding: 10px; 
+}
+.finalSubmit {
+    width:100%;
+}
+a:focus, a:active {
+    border: 2px solid red;
+    border-radius: 4px;
+  }
+@media (max-width: 768px) {
+    .d-flex{
+        flex-direction: column;
+        
+        
+    }
+    .cartImg{
+        width:99%;
+        align-self: center;
+    }
+    .bearName {
+        align-self: center;
+    }
+    .bearColor {
+        align-self: center;
+        background-color:rgb(238, 238, 255)
+    }
+   
+}

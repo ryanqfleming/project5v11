@@ -1,0 +1,36 @@
+body {
+    background-color: white;
+}
+.bearImg {
+    width: 94%;
+    height: 300px;
+    object-fit: cover;
+}
+.bearContain {
+    width: 33% !important;
+}
+.mainBearContainer {
+    background-color: #f3e9f1;
+}
+.display-4 {
+    letter-spacing: 1vw !important;
+    font-weight: bold;
+    color:rgb(27, 99, 117);
+    text-shadow: #f3e9f1 0 5px;
+}
+@media (max-width: 955px) {
+    .bearImg {
+        width: 100% !important;
+    }
+    .bearContain {
+        width: 48% !important;
+    }
+}
+@media (max-width: 768px) {
+    .bearImg {
+        width: 100% !important;
+    }
+    .bearContain {
+        width: 100% !important;
+    }
+}
