@@ -68,6 +68,7 @@ async function displayBear() {
   bearIndex = getBear(bears);
   //this if statment sends the user to back to the homepage if any data sent is incorrent or missing
   if (typeof bearIndex === "undefined" || bearIndex === null) {
+    alert('error, please click on bear at homepage')
     location.href =
       window.location.href.substring(0, window.location.href.lastIndexOf("/")) +
       "/index.html";

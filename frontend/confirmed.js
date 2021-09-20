@@ -11,6 +11,7 @@ async function postInfo() {
   const url = "http://localhost:3000/api/teddies/order";
   //reroute to index if no customer info is submitted
   if(grabCustInfo === null){
+    alert('Order already placed, returning to home')
     window.location.href = "index.html";
   }
   //loop through the cart and its count and create the array that is needed for the post
@@ -103,6 +104,8 @@ function arrayCounter(item) {
   console.log(entries, "da holder");
   return entries;
 }
+
+//gets the total price and then formats it
 function priceDisplayer(item) {
   console.log(item, 'passed array')
   let priceHldr = 0;
