@@ -1,0 +1,45 @@
+.formContain{
+    background-color: #f3e9f1;
+    border: 5px dotted rgba(164,43,153,0.1);
+    border-radius: 34px;
+    margin-bottom: 5px;   
+    padding: 10px; 
+}
+.finalSubmit {
+    width:100%;
+}
+a:focus, a:active {
+    border: 2px solid red;
+    border-radius: 4px;
+  }
+  #errorForm {
+      background-color:indianred;
+      border-radius: 34px;
+
+  }
+  .custInfo {
+      background-color: ivory;
+      border-radius: 34px;
+      border: 5px dotted rgba(164,43,153,0.1);
+  }
+  .orderSum {
+    background-color: ivory;
+    border-radius: 34px;
+    border: 5px dotted rgba(164,43,153,0.1);
+  }
+  .bearIcon {
+      width: 60px;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 14px;
+  }
+  @media (max-width: 768px) {
+    .item {
+        flex-wrap: wrap;
+        flex-direction: column;
+    }
+    .bearIcon {
+        width: 100%;
+    }
+   
+}
