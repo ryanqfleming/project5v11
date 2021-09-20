@@ -7,21 +7,23 @@ let bears = "";
 let totalPrice = 0;
 let priceHolder;
 console.log(grabArray);
-
+//tells the user the cart is empty if it is empty
 if (grabArray === null || grabArray.length < 10) {
   document.getElementById("firstWrapper").innerHTML =
     "<div class='display-3'>EMPTY</div>";
 }
+//hides the cart and shows the info form
 async function nextForm() {
   document.getElementById("informationForm").style.display = "block";
   document.getElementById("firstWrapper").style.display = "none";
-  document.getElementById("totalPriceHolder").innerHTML =
     await priceDisplayer();
 }
+//hides the form and shows the cart
 function backForm() {
   document.getElementById("informationForm").style.display = "none";
   document.getElementById("firstWrapper").style.display = "block";
 }
+//displays the cart amount at the top right
 function cartCheckOnLoad() {
   let totalCart = 0;
   let cartDoc = document.getElementById("cart");
@@ -40,6 +42,7 @@ function cartCheckOnLoad() {
     cartDoc.innerHTML = "Cart";
   }
 }
+//the server fetch to get the bear information
 async function gatherBears() {
   let url = "http://localhost:3000/api/teddies";
   try {
@@ -49,6 +52,7 @@ async function gatherBears() {
     console.log(error);
   }
 }
+//displays the list of the bears
 async function displayBear() {
   bears = await gatherBears();
   if (grabArray !== null) {
@@ -66,18 +70,16 @@ async function displayBear() {
           bAmount = grabber[x][2];
           console.log(bAmount, "bAmount");
           let bPrice = bears[p].price * bAmount;
-          //got to insert the period lol
-          //to do this i just converted to string and then used the length - 2(the decimal place) for the slice
+        //this just displays the bears price for each line item
           let bPrice2 = bPrice.toString();
           bPrice2 =
             bPrice2.slice(0, bPrice2.length - 2) +
             "." +
             bPrice2.slice(bPrice2.length - 2);
           bPrice2 = "Price: $" + bPrice2;
-
+          //makes sure the same color is selected from the drop down
           bears[p].colors.forEach(function (selection, q) {
             if (selection == grabber[x][1]) {
-              // console.log(itemList[x][1], 'itemList');
               selectTag = "selected";
             } else {
               selectTag = "";
@@ -90,7 +92,8 @@ async function displayBear() {
               selection +
               "</option>";
           });
-          console.log(x, "the pp");
+          //put the html part into its own function for reability 
+
           document.querySelector(".mainBear").innerHTML += htmlString(
             x,
             bearImg,
@@ -105,23 +108,22 @@ async function displayBear() {
   }
   document.getElementById("totalPrice").innerHTML = await priceDisplayer();
 }
+//puts the information into the local storage then refreshed the page to reflect it
 function updatePage() {
   let grabber = JSON.parse(grabArray);
   grabber.forEach(function (item, x) {
     let countId = "amount" + x;
-    //console.log(countId, "countid");
     let count = document.getElementById(countId).value;
-    //console.log(count, "dacount");
     let colorID = "selectHtml" + x;
     let color2 = document.getElementById(colorID).value;
     grabber[x][1] = color2;
     grabber[x][2] = count;
-    //console.log("update called", x, count);
-    //console.log(itemList, "the item list");
     localStorage.setItem("bearCartArray", JSON.stringify(grabber));
     location.reload();
   });
 }
+//deletes the line item and then refreshed the page after. 
+//it has its own refresh which avoids having to validate the form again
 function deleteItem(item) {
   console.log(item.id);
   let deleteCount = item.id;
@@ -135,6 +137,7 @@ function deleteItem(item) {
   debugger;
   location.reload();
 }
+//gets the total price and returns it formatted 
 async function priceDisplayer() {
   let priceHldr = 0;
   bearData = await gatherBears();
@@ -161,14 +164,14 @@ function bearCountDataValidate() {
   let checker = new Boolean(true);
   let sample = /^[0-9]+$/;
   let grabber = JSON.parse(grabArray);
-  //grabber.forEach(function(item, x) {
+
   console.log(grabber.length, "grabber length");
   for (x = 0; x < grabber.length; x++) {
     let holdMe = "amount" + x;
     console.log(holdMe, "the hold me");
     let currentCount = document.getElementById(holdMe);
     if (currentCount.value.match(sample)) {
-      //updatePage();
+
       console.log(currentCount.value.match(sample), "match checker");
     }else if(currentCount < 1) {
       currentCount.style.border = "2px solid red";
@@ -178,7 +181,7 @@ function bearCountDataValidate() {
       currentCount.style.border = "2px solid red";
       currentCount.value = "Numbers Only";
       checker = false;
-      //break;
+
     }
   }
   if (checker == true) {
@@ -188,6 +191,7 @@ function bearCountDataValidate() {
     console.log(checker, "checker");
   }
 }
+//data validation for user form
 function formDataValidate() {
   console.log("validation called");
   let checker = true;
@@ -230,6 +234,7 @@ function formDataValidate() {
       "<h2 class='p-2 text-center text-white'>Please Enter Valid Information in all Red Boxes</h2>";
   }
 }
+//just the html string for each bear line item
 function htmlString(x, bearImg, bearName, selectHTML, bAmount, bPrice2) {
   let cartDiv =
     "<div class='d-flex displayBears'><div class='p-2'><img class='cartImg' src='" +
@@ -257,7 +262,7 @@ function htmlString(x, bearImg, bearName, selectHTML, bAmount, bPrice2) {
     "'>Deleted Item</button></div></div>";
   return cartDiv;
 }
-
+//send us to cart after form is data validated, puts the form into local storage
 function redirectToCart(){
   let userForm = document.forms.userInformation;
   
@@ -277,4 +282,4 @@ displayBear();
 cartCheckOnLoad();
 priceDisplayer();
 
-//document.getElementById('totalPriceHolder').innerHTML = priceHolder;
+
